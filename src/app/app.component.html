@@ -1,26 +1,11 @@
 <!-- App Component Works!!! -->
 <mat-sidenav-container>
-    <mat-sidenav opened="true" #sideNav role="navigation">
-        <p>I'm the side nav</p>
+    <mat-sidenav #sideNav role="navigation">
+       <app-sidenav-list (closeSideNav)="sideNav.close()"></app-sidenav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <!-- <button (click)="sideNav.toggle()"> Toggle Side Nav </button> -->
-        <mat-toolbar color="primary">
-            <div><button mat-icon-button (click)="sideNav.toggle()">
-                    <mat-icon>menu</mat-icon>
-                </button>
-            </div>
-            <div>
-                <a [routerLink]="[ '/' ]">Logo</a>
-            </div>
-            <div fxFlex fxLayout="row" fxLayoutAlign="end start">
-                <ul fxLayout="row" class="navigation-items" fxLayoutGap="10px">
-                    <li><a [routerLink]="[ '/signup' ]">SignUp</a></li>
-                    <li><a [routerLink]="[ '/login' ]">Login</a></li>
-                    <li><a [routerLink]="[ '/trainings' ]">Trainings</a></li>
-                </ul>
-            </div>
-        </mat-toolbar>
+        <app-header (sidenavToggle)="sideNav.toggle()" ></app-header>
         <main>
             <router-outlet></router-outlet>
         </main>
