@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,14 +15,18 @@ export class SignupComponent implements OnInit {
     termsChecked: new FormControl('', [Validators.requiredTrue] )
   }
   );
-  constructor() { }
+  constructor( private authService: AuthService ) { }
 
   ngOnInit() {
   }
 
   processForm() {
     console.log(' Inside Submit!!! ', this.signUpForm );
-  }
+    this.authService.registerUser({
+      email: this.signUpForm.value.email,
+      password: this.signUpForm.value.password
+  });
+}
   getMaxDOB() {
     let currentYear = (new Date ()).getFullYear() - 18;
     let maxAllowedDob= new Date ();

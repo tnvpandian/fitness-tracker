@@ -1,3 +1,18 @@
-<p>
-  login works!
-</p>
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="loginForm" (ngSubmit)="processSigninForm()">
+    <mat-form-field>
+      <input matInput type="text" formControlName="userid" placeholder="Email">
+      <mat-hint align="end">User email address</mat-hint>
+      <mat-error *ngIf="loginForm.value.userid?.length === 0"> Field can not be left blank </mat-error>
+      <mat-error *ngIf="loginForm.value.userid?.length > 0"> Invalid Email Address </mat-error>
+    </mat-form-field>
+    <mat-form-field placeholder="userName">
+      <input matInput type="password" formControlName="password" placeholder="Password">
+      <mat-hint align="end">User Password</mat-hint>
+      <mat-error *ngIf="loginForm.value.password?.length === 0"> Field can not be left blank </mat-error>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">Login</button>
+
+  </form>
+</section>
