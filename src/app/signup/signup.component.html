@@ -1,0 +1,25 @@
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="processForm()" [formGroup]="signUpForm">
+
+    <mat-form-field>
+      <input type="email" matInput placeholder="Your Email" formControlName="userName">
+      <mat-error *ngIf="signUpForm.value.userName.length === 0"> Field should not be empty </mat-error>
+      <mat-error *ngIf="signUpForm.value.userName.length != 0"> Email is invalid </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Your Password" formControlName="passWord">
+      <mat-hint align="end" > {{ signUpForm.value.passWord?.length }} / 6 </mat-hint>
+      <mat-error *ngIf="signUpForm.value.passWord?.length < 6"> Should be atleast 6 chars length. </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="dobDatePicker" placeholder="Your D.O.B" formControlName="userDob" [max]="getMaxDOB()">
+      <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #dobDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="termsChecked">I agree to terms and conitions </mat-checkbox>
+    <button mat-raised-button color="primary" [disabled]="signUpForm.invalid"> SignUp </button>
+  </form>
+</section>
