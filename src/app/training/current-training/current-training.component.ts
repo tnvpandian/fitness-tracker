@@ -11,7 +11,7 @@ import { Exercise } from '../exercise.model';
   styleUrls: ['./current-training.component.css']
 })
 export class CurrentTrainingComponent implements OnInit {
-  progress = 0;
+  progress:number = 0;
   timer = null;
   currentExercise: Exercise;
   constructor(private dialog: MatDialog, private trainingService: TrainingService) { }
@@ -22,12 +22,15 @@ export class CurrentTrainingComponent implements OnInit {
   }
 
   startOrResumeTraining() {
-    const step = this.trainingService.getRunningExercise().duration / 100 * 1000;
+    const step = this.trainingService.getRunningExercise().duration / 100 *1000;
     this.timer = setInterval(() => {
+      console.log('CurrentTrainingComponent : startOrResumeTraining :  currentExercise:'+ this.currentExercise.id +' this.progress:' + this.progress);
       this.progress += 1;
       if (this.progress >= 100) {
+        this.trainingService.completeExercise();
         clearInterval(this.timer);
-      }
+        this.progress = 0;
+     }
     }, step);
 
   }
@@ -38,9 +41,10 @@ export class CurrentTrainingComponent implements OnInit {
       console.log(result);
       if(result === true) {
         clearInterval(this.timer);
-        this.trainingService.stopCurrentExercise();
+        this.trainingService.cancelExercise(this.progress);
+        this.progress = 0;
       } else {
-        this.startOrResumeTraining();
+        // this.startOrResumeTraining();
       }
     });
   }

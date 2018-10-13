@@ -11,7 +11,7 @@ export class TrainingService {
     ];
 
     private runningExercise: Exercise;
-
+    private completedExercises: Exercise[] = [];
     constructor() {
 
     }
@@ -21,11 +21,39 @@ export class TrainingService {
     startExercise(selectedId: string) {
         this.runningExercise = this.availableExercises.find(ex => ex.id === selectedId);
         this.exerciseChanged.next(this.runningExercise);
+        console.log('Training Service: startExercise => '+selectedId);
     }
+    completeExercise() {
+        this.completedExercises.push({ ...this.runningExercise, date: new Date(), state: 'completed' });
+        this.runningExercise = null;
+        this.exerciseChanged.next(this.runningExercise);
+        console.log('Training Service: completeExercise => '+this.runningExercise);
+
+    }
+
+    cancelExercise(progress: number) {
+        this.completedExercises.push({
+            ...this.runningExercise,
+            date: new Date(),
+            state: 'cancelled',
+            duration: this.runningExercise.duration * (progress / 100),
+            calories: this.runningExercise.calories * (progress / 100)
+        });
+        this.runningExercise = null;
+        this.exerciseChanged.next(this.runningExercise);
+        console.log('Training Service: cancelExercise => '+this.runningExercise);
+    }
+
     stopCurrentExercise() {
         this.exerciseChanged.next(null);
+        console.log('Training Service: stopCurrentExercise => '+this.runningExercise);
     }
     getRunningExercise() {
         return { ...this.runningExercise };
     }
+
+    getCompletedOrCancelledTrainings() {
+        return this.completedExercises.slice();
+    }
+
 }

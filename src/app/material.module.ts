@@ -14,19 +14,20 @@ import {
     MatCardModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
 } from "@angular/material";
 
 @NgModule({
     imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
         MatNativeDateModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule,
         MatIconModule, MatListModule, MatTabsModule, MatCardModule,
-        MatSelectModule, MatProgressSpinnerModule, MatDialogModule
+        MatSelectModule, MatProgressSpinnerModule, MatDialogModule,MatTableModule
     ],
     exports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
         MatNativeDateModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule,
         MatIconModule, MatListModule, MatTabsModule, MatCardModule,
-        MatSelectModule, MatProgressSpinnerModule, MatDialogModule
+        MatSelectModule, MatProgressSpinnerModule, MatDialogModule,MatTableModule
     ]
 })
 export class FitnessAppMaterialModule {
