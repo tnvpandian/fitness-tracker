@@ -16,7 +16,9 @@ import {
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule,
+    MatSnackBarModule
 } from "@angular/material";
 
 @NgModule({
@@ -24,13 +26,13 @@ import {
         MatNativeDateModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule,
         MatIconModule, MatListModule, MatTabsModule, MatCardModule,
         MatSelectModule, MatProgressSpinnerModule, MatDialogModule,MatTableModule,
-        MatSortModule
+        MatSortModule, MatPaginatorModule, MatSnackBarModule
     ],
     exports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
         MatNativeDateModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule,
         MatIconModule, MatListModule, MatTabsModule, MatCardModule,
         MatSelectModule, MatProgressSpinnerModule, MatDialogModule,MatTableModule,
-        MatSortModule
+        MatSortModule, MatPaginatorModule, MatSnackBarModule
     ]
 })
 export class FitnessAppMaterialModule {

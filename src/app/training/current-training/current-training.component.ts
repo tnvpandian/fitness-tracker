@@ -36,15 +36,15 @@ export class CurrentTrainingComponent implements OnInit {
   }
 
   onStop() {
+    clearInterval(this.timer);
     const dialogRef = this.dialog.open(StopTrainingComponent, { data: { progress: this.progress } });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
       if(result === true) {
-        clearInterval(this.timer);
         this.trainingService.cancelExercise(this.progress);
         this.progress = 0;
       } else {
-        // this.startOrResumeTraining();
+        this.startOrResumeTraining();
       }
     });
   }
